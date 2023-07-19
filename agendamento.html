@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agendamento de Pet</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Agendamento de Pet</h1>
+    </header>
+    
+    <div class="container">
+        <div class="agend-image">
+            <img style="width: 100%; border-radius: 4px;" src="amor.png" alt="Imagem do Pet">
+        </div>
+        <form id="booking-form">
+            <h2>Agendar um Serviço</h2>
+            <label for="name">Nome do Pet:</label>
+            <input type="text" id="name" name="name" placeholder="Digite o nome do pet">
+
+            <label for="service">Tipo de Serviço:</label>
+            <select id="service" name="service">
+                <option value="banho">Banho</option>
+                <option value="tosa">Tosa</option>
+                <option value="consulta">Consulta</option>
+            </select>
+
+            <label for="date">Data:</label>
+            <input type="date" id="date" name="date">
+
+            <label for="time">Horário:</label>
+            <input type="time" id="time" name="time">
+
+            <input type="submit" value="Agendar">
+        </form>
+        <!-- <button id="contact-button">Entre em contato</button> -->
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Agendamento de Pet. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função para enviar a mensagem para o WhatsApp
+        function sendWhatsAppMessage() {
+            var name = document.getElementById('name').value;
+            var service = document.getElementById('service').value;
+            var date = document.getElementById('date').value;
+            var time = document.getElementById('time').value;
+
+            // Formatar a mensagem
+            var message = "Olá! Gostaria de agendar um serviço para o meu pet:\n";
+            message += "Nome do pet: " + name + "\n";
+            message += "Tipo de serviço: " + service + "\n";
+            message += "Data: " + date + "\n";
+            message += "Horário: " + time;
+
+            // Gerar o link do WhatsApp com a mensagem
+            var whatsappLink = "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
+
+            // Abrir o link do WhatsApp em uma nova janela
+            window.open(whatsappLink);
+        }
+
+        // Evento de envio do formulário
+        var form = document.getElementById('booking-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Impedir o envio do formulário padrão
+            sendWhatsAppMessage(); // Chamar a função de envio do WhatsApp
+        });
+
+        // Evento do botão de contato
+        var contactButton = document.getElementById('contact-button');
+        contactButton.addEventListener('click', function() {
+            sendWhatsAppMessage(); // Chamar a função de envio do WhatsApp
+        });
+    </script>
+</body>
+</html>
+
